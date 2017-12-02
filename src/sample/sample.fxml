@@ -28,6 +28,7 @@
       <TextField fx:id="wiek" promptText="wiek" GridPane.rowIndex="5" />
       <TextField fx:id="wzrost" promptText="wzrost" GridPane.rowIndex="6" />
       <Button fx:id="przycisk" mnemonicParsing="false" onAction="#handleClick" text="Zatwierdź" GridPane.rowIndex="7" />
+      <Button fx:id="przycisk2" layoutY="100.0" mnemonicParsing="false" onAction="#handleClick2" prefHeight="25.0" prefWidth="55.0" text="Usun" translateX="100.0" GridPane.columnSpan="3" GridPane.rowIndex="7" />
    </children>
    <columnConstraints>
       <ColumnConstraints />

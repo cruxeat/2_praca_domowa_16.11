@@ -1,10 +1,22 @@
 package sample;
 
+import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 public class Controller {
@@ -17,9 +29,16 @@ public class Controller {
 
     public TableView<Czlowieczek> table;
 
+    ObservableList<Czlowieczek> czlowieczki = FXCollections.observableArrayList();
 
 
+    public void handleClick2(ActionEvent actionEvent) {
+        ObservableList<Czlowieczek> czlowieczekWybrany, wszystkieCzlowieczki;
+        wszystkieCzlowieczki = table.getItems();
+        czlowieczekWybrany = table.getSelectionModel().getSelectedItems();
+        czlowieczekWybrany.forEach(wszystkieCzlowieczki::remove);
 
+    }
 
     public static class Czlowieczek {
 
@@ -78,8 +97,15 @@ public class Controller {
         }
     }
 
+
     public void handleClick(ActionEvent actionEvent) {
         table.getItems().add(new Czlowieczek(imie.getText(), nazwisko.getText(), pesel.getText(), wiek.getText(), wzrost.getText() ));
+        imie.clear();
+        nazwisko.clear();
+        pesel.clear();
+        wiek.clear();
+        wzrost.clear();
+
     }
 
     public void initialize() {
@@ -87,7 +113,8 @@ public class Controller {
             if ("kolImie".equals(column.getId())) {
                 TableColumn<Czlowieczek, String> textColumn = (TableColumn<Czlowieczek, String>) column;
                 textColumn.setCellValueFactory(new PropertyValueFactory<>("imie"));
-            } else if ("kolNazw".equals(column.getId())) {
+            }
+            else if ("kolNazw".equals(column.getId())) {
                 TableColumn<Czlowieczek, String> textColumn = (TableColumn<Czlowieczek, String>) column;
                 textColumn.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
             }
@@ -104,5 +131,9 @@ public class Controller {
                 textColumn.setCellValueFactory(new PropertyValueFactory<>("wzrost"));
             }
         }
+
+
+
+
     }
 }
